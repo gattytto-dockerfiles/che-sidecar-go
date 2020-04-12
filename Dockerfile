@@ -87,7 +87,8 @@ RUN set -e \
     cd /go/bin && mkdir protoc-download && cd protoc-download && \
     wget https://github.com/protocolbuffers/protobuf/releases/download/v3.11.2/protoc-3.11.2-linux-x86_64.zip && \
     unzip protoc-3.11.2-linux-x86_64.zip && rm -f protoc-3.11.2-linux-x86_64.zip && cp -R include ../ && \
-    cp bin/protoc ../ && cd ../ && rm -rf protoc-download     
+    cp bin/protoc ../ && cd ../ && rm -rf protoc-download && \
+    apk add git curl file 
 
 ENV GOPATH /go
 ENV GOCACHE /.cache
