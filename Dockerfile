@@ -79,7 +79,7 @@ RUN set -e \
     go build -o /go/bin/gocode-gomod github.com/stamblerre/gocode && \
     chmod -R 777 "$GOPATH" && \
     cd /projects && git clone https://github.com/cri-o/cri-o && \
-    cd cri-o && go get -v ... && cd /usr/local/go/src && \
+    cd cri-o && go get -v ... && cd /usr/local/go/src && rm -rf /projects/cri-o && \
     apk del .build-deps && \
     mkdir /.cache && chmod -R 777 /.cache && \
     cd /usr/local && wget -O- -nv https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh | sh -s v1.24.0 -b /usr/local && \
