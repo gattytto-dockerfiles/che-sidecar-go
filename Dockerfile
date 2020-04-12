@@ -78,7 +78,7 @@ RUN set -e \
     GO111MODULE=on go get -v golang.org/x/tools/gopls@latest && \
     go build -o /go/bin/gocode-gomod github.com/stamblerre/gocode && \
     cd /projects && git clone https://github.com/cri-o/cri-o && \
-    cd cri-o && go get -v ... && cd /usr/local/go/src && rm -rf /projects/cri-o && \
+    cd cri-o && go get -duv all && cd /usr/local/go/src && rm -rf /projects/cri-o && \
     chmod -R 777 "$GOPATH" && \
     apk del .build-deps && \
     mkdir /.cache && chmod -R 777 /.cache && \
