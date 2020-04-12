@@ -51,6 +51,8 @@ RUN set -e \
     export GOPATH="/go" && \
     mkdir -p "$GOPATH/src" "$GOPATH/bin" "$GOPATH/pkg" && \
     export PATH="$GOPATH/bin:/usr/local/go/bin:$PATH" && \
+    cd /projects && git clone https://github.com/cri-o/cri-o && \
+    cd cri-o && GO111MODULE=off go get -u -d -v ... && cd /usr/local/go/src && rm -rf /projects/cri-o && \
     go get -u -v github.com/go-delve/delve/cmd/dlv && \
     go get -u -v github.com/ramya-rao-a/go-outline && \
     go get -u -v github.com/acroca/go-symbols &&  \
@@ -78,8 +80,6 @@ RUN set -e \
     go get -d -u -v github.com/infobloxopen/protoc-gen-gorm && \
     GO111MODULE=on go get -v golang.org/x/tools/gopls@latest && \
     go build -o /go/bin/gocode-gomod github.com/stamblerre/gocode && \
-    cd /projects && git clone https://github.com/cri-o/cri-o && \
-    cd cri-o && GO111MODULE=off go get -d -v all && cd /usr/local/go/src && rm -rf /projects/cri-o && \
     chmod -R 777 "$GOPATH" && \
     apk del .build-deps && \
     mkdir /.cache && chmod -R 777 /.cache && \
