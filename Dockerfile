@@ -45,14 +45,22 @@ RUN set -e \
         x86) export GO386='387' ;; \
     esac \
     && \
-    wget -qO- https://dl.google.com/go/go1.12.17.linux-amd64.tar.gz | tar xvz -C /usr/local && \
+    wget -qO- https://dl.google.com/go/go1.14.2.linux-amd64.tar.gz | tar xvz -C /usr/local && \
     cd /usr/local/go/src &&    ./make.bash && \
-    rm -rf /usr/local/go/pkg/bootstrap /usr/local/go/pkg/obj && \
-    export GOPATH="/go" && \
+    rm -rf /usr/local/go/pkg/bootstrap /usr/local/go/pkg/obj 
+    
+ENV GOPATH /go
+ENV GO111MODULE off
+ENV GOCACHE /.cache
+ENV GOROOT /usr/local/go
+ENV PATH $GOPATH/bin:/usr/local/go/bin:$PATH
+
+RUN export GOPATH="/go" && \
     mkdir -p "$GOPATH/src" "$GOPATH/bin" "$GOPATH/pkg" && \
     export PATH="$GOPATH/bin:/usr/local/go/bin:$PATH" && \
     cd /projects && git clone https://github.com/cri-o/cri-o && \
-    cd cri-o && GO111MODULE=off go get -u -d -v ... && cd /usr/local/go/src && rm -rf /projects/cri-o && \
+    cd cri-o && GO111MODULE=on go get -u -d -v ... && cd /usr/local/go/src && \
+    mv -f /root/go/pkg/mod/* /go/pkg/mod/ && rm -rf /projects/cri-o && \
     go get -u -v github.com/go-delve/delve/cmd/dlv && \
     go get -u -v github.com/ramya-rao-a/go-outline && \
     go get -u -v github.com/acroca/go-symbols &&  \
@@ -90,10 +98,6 @@ RUN set -e \
     cp bin/protoc ../ && cd ../ && rm -rf protoc-download && \
     apk add git curl file pkgconfig 
 
-ENV GOPATH /go
-ENV GOCACHE /.cache
-ENV GOROOT /usr/local/go
-ENV PATH $GOPATH/bin:/usr/local/go/bin:$PATH
 ADD etc/entrypoint.sh /entrypoint.sh
 
 ENTRYPOINT [ "/entrypoint.sh" ]
