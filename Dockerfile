@@ -89,7 +89,7 @@ RUN export GOPATH="/go" && \
     go build -o /go/bin/gocode-gomod github.com/stamblerre/gocode && \
     chmod -R 777 "$GOPATH" && \
     apk del .build-deps && \
-    mkdir /.cache && chmod -R 777 /.cache && mkdir -p /home/theia/.cache/golangci-lint && chmod -R 777 /home/theia/.cache && \
+    chmod -R 777 /.cache && mkdir -p /home/theia/.cache/golangci-lint && chmod -R 777 /home/theia/.cache && \
     cd /usr/local && wget -O- -nv https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh | sh -s v1.24.0 -b /usr/local && \
     cd /go/bin && mkdir protoc-download && cd protoc-download && \
     wget https://github.com/protocolbuffers/protobuf/releases/download/v3.11.2/protoc-3.11.2-linux-x86_64.zip && \
