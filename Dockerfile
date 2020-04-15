@@ -59,8 +59,7 @@ RUN export GOPATH="/go" && \
     mkdir -p "$GOPATH/src" "$GOPATH/bin" "$GOPATH/pkg" && \
     export PATH="$GOPATH/bin:/usr/local/go/bin:$PATH" && \
     cd /projects && git clone https://github.com/cri-o/cri-o && \
-    cd cri-o && GO111MODULE=off go get -u -d -v -fix ... && cd /usr/local/go/src && \
-    mv -f /root/go/pkg/mod/* /go/pkg/mod/ && rm -rf /projects/cri-o && \
+    cd cri-o && GO111MODULE=off go get -u -d -v -fix ... && cd /usr/local/go/src && rm -rf /projects/cri-o && \
     go get -u -v github.com/go-delve/delve/cmd/dlv && \
     go get -u -v github.com/ramya-rao-a/go-outline && \
     go get -u -v github.com/acroca/go-symbols &&  \
