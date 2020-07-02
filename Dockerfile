@@ -45,7 +45,7 @@ RUN set -e \
         x86) export GO386='387' ;; \
     esac \
     && \
-    wget -qO- https://dl.google.com/go/go1.14.2.linux-amd64.tar.gz | tar xvz -C /usr/local && \
+    wget -qO- https://dl.google.com/go/go1.15beta1.linux-amd64.tar.gz | tar xvz -C /usr/local && \
     cd /usr/local/go/src &&    ./make.bash && \
     rm -rf /usr/local/go/pkg/bootstrap /usr/local/go/pkg/obj 
     
@@ -85,16 +85,12 @@ RUN export GOPATH="/go" && \
     go get -u -v  google.golang.org/genproto/... && \
     go get -u github.com/jinzhu/gorm && \
     go get -d -u -v github.com/infobloxopen/protoc-gen-gorm && \
-    GO111MODULE=on go get -v golang.org/x/tools/gopls@latest && \
+    go get -v golang.org/x/tools/gopls@latest && \
     go build -o /go/bin/gocode-gomod github.com/stamblerre/gocode && \
     chmod -R 777 "$GOPATH" && \
     apk del .build-deps && \
     chmod -R 777 /.cache && mkdir -p /home/theia/.cache/golangci-lint && chmod -R 777 /home/theia/.cache && \
     cd /usr/local && wget -O- -nv https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh | sh -s v1.24.0 -b /usr/local && \
-    cd /go/bin && mkdir protoc-download && cd protoc-download && \
-    wget https://github.com/protocolbuffers/protobuf/releases/download/v3.11.2/protoc-3.11.2-linux-x86_64.zip && \
-    unzip protoc-3.11.2-linux-x86_64.zip && rm -f protoc-3.11.2-linux-x86_64.zip && cp -R include ../ && \
-    cp bin/protoc ../ && cd ../ && rm -rf protoc-download && \
     apk add git curl file pkgconfig 
 
 ADD etc/entrypoint.sh /entrypoint.sh
