@@ -91,7 +91,7 @@ RUN export GOPATH="/go" && \
     apk del .build-deps && \
     chmod -R 777 /.cache && mkdir -p /home/theia/.cache/golangci-lint && chmod -R 777 /home/theia/.cache && \
     cd /usr/local && wget -O- -nv https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh | sh -s v1.24.0 -b /usr/local && \
-    apk add git curl file pkgconfig 
+    apk add git curl file pkgconfig bash
 
 ADD etc/entrypoint.sh /entrypoint.sh
 
