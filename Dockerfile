@@ -95,6 +95,7 @@ RUN export GOPATH="/go" && \
     apk add git curl file pkgconfig bash ssh
 
 ADD etc/entrypoint.sh /entrypoint.sh
+ENV GO111MODULE on
 
 ENTRYPOINT [ "/entrypoint.sh" ]
 CMD ${PLUGIN_REMOTE_ENDPOINT_EXECUTABLE}
