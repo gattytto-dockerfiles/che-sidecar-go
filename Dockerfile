@@ -92,7 +92,7 @@ RUN export GOPATH="/go" && \
     chmod -R 777 /home/theia/.cache && mkdir -p /home/theia/.cache/golangci-lint && chmod -R 777 /home/theia/.cache && mkdir -p /home/theia/.theia/plugins && \
     mkdir -p mkdir -p /home/theia/.theia/extensions && chmod -R 777 /home/theia/.theia && \
     cd /usr/local && wget -O- -nv https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh | sh -s v1.24.0 -b /usr/local && \
-    apk add git curl file pkgconfig bash
+    apk add git curl file pkgconfig bash ssh
 
 ADD etc/entrypoint.sh /entrypoint.sh
 
