@@ -46,7 +46,7 @@ RUN set -e \
     esac \
     && \
     mkdir -p /usr/local/go && git clone https://github.com/golang/go /usr/local/go && \
-    cd /usr/local/go/src &&    ./make.bash && \
+    cd /usr/local/go/src && git checkout master &&    ./make.bash && \
     rm -rf /usr/local/go/pkg/bootstrap /usr/local/go/pkg/obj 
     
 ENV GOPATH /go
