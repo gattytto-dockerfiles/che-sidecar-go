@@ -45,7 +45,7 @@ RUN set -e \
         x86) export GO386='387' ;; \
     esac \
     && \
-    wget -qO- https://dl.google.com/go/go1.15beta1.linux-amd64.tar.gz | tar xvz -C /usr/local && \
+    mkdir -p /usr/local/go && git clone https://github.com/golang/go /usr/local/go && \
     cd /usr/local/go/src &&    ./make.bash && \
     rm -rf /usr/local/go/pkg/bootstrap /usr/local/go/pkg/obj 
     
