@@ -85,7 +85,7 @@ RUN export GOPATH="/go" && \
     go get -u -v  google.golang.org/genproto/... && \
     go get -u github.com/jinzhu/gorm && \
     go get -d -u -v github.com/infobloxopen/protoc-gen-gorm && \
-    GO111MODULE=on go get -v golang.org/x/tools/gopls@v0.4.3 && \
+    GO111MODULE=on go get -v golang.org/x/tools/gopls@master && \
     go build -o /go/bin/gocode-gomod github.com/stamblerre/gocode && \
     chmod -R 777 "$GOPATH" && \
     apk del .build-deps && \
