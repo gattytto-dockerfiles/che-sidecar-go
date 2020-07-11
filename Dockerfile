@@ -87,7 +87,7 @@ RUN export GOPATH="/go" && \
     go get -d -u -v github.com/infobloxopen/protoc-gen-gorm && \
     GO111MODULE=on go get golang.org/x/tools/gopls@master golang.org/x/tools@master && \
     go build -o /go/bin/gocode-gomod github.com/stamblerre/gocode && \
-    chmod -R 777 "$GOPATH" && \
+    chmod -R 777 "$GOPATH" && mkdir -p /.cache && chmod -R 777 /.cache &&\
     apk del .build-deps && \
     chmod -R 777 /home/theia/.cache && mkdir -p /home/theia/.cache/golangci-lint && chmod -R 777 /home/theia/.cache && mkdir -p /home/theia/.theia/plugins && \
     mkdir -p mkdir -p /home/theia/.theia/extensions && chmod -R 777 /home/theia/.theia && \
